@@ -19,17 +19,28 @@ const sections = [
   },
 ]
 
-
 describe('<Accordion />', () => {
   test('renders empty given no props', () => {
     const wrapper = shallow(<Accordion />)
     expect(toJson(wrapper)).toMatchSnapshot()
   })
 
-  test('renders no section as deafult', () => {
+  test('renders no section by default', () => {
     const wrapper = shallow(<Accordion sections={sections} />)
     expect(toJson(wrapper)).toMatchSnapshot()
   })
 
-  
+  test('renders content from a clicked section', () => {
+    const wrapper = shallow(<Accordion sections={sections} />);
+    wrapper.find('button').at(0).simulate('click');
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  test('renders content from last section when multiple sections have been clicked', () => {
+    const wrapper = shallow(<Accordion sections={sections} />);
+    wrapper.find('button').at(0).simulate('click');
+    wrapper.find('button').at(1).simulate('click');
+    wrapper.find('button').at(2).simulate('click');
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 })
