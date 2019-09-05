@@ -30,7 +30,7 @@ class RouletteGun extends React.Component{
                 <button onClick={this.handleClick}>Pull the trigger!</button>
                 <p>
                     {this.state.spinningTheChamber && 'spinning the chamber and pulling the trigger!...'}
-                    {this.state.chamber === this.props.bulletInChamber ? 'BANG!!!!' : "you're safe"}
+                    {!this.state.spinningTheChamber && (this.state.chamber === this.props.bulletInChamber ? 'BANG!!!!' : "you're safe")}
                 </p>
             </div>
         )
